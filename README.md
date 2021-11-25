@@ -1,3 +1,3 @@
 # happyPetTeam
-Here you can our page <br>
+Here you can see our page <br>
 https://veronnah.github.io/happyPetTeam/
