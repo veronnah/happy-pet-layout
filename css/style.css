@@ -1,15 +1,151 @@
 @import url('../css/fonts.css');
 
-*{
+* {
     box-sizing: border-box;
 }
 
-body, html{
+body,
+html {
     height: 100%;
 }
 
-body{
+body {
     font-family: 'Montserrat';
     font-style: normal;
     font-weight: normal;
+    overflow-x: hidden;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:focus {
+    outline: none;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+.container {
+    max-width: 1290px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+}
+
+.header__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.logo img {
+    padding-top: 12px;
+}
+
+.header__nav ul {
+    display: flex;
+}
+
+.header__nav ul li {
+    margin-right: 14px;
+}
+
+.header__nav ul li a {
+    font-size: 18px;
+    color: #000;
+}
+
+.header__nav ul li a.active {
+    font-weight: 600;
+}
+
+.call {
+    font-size: 18px;
+    color: #000;
+}
+
+.call img {
+    margin-right: 7px;
+}
+
+.header__cart-dropdown span {
+    font-size: 18px;
+    color: #000;
+}
+
+.header__cart-dropdown .cart-icon {
+    margin-right: 8px;
+}
+
+.header__cart-dropdown .arrow__cart-down {
+    margin-left: 8px;
+}
+
+.main {
+    background: linear-gradient(113.72deg, #FFC531 18.07%, #F7953C 86.73%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.main__text {
+    max-width: 464px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    margin-top: 18em;
+}
+
+.main__text h1 {
+    font-weight: 800;
+    font-size: 40px;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+.main__text p {
+    font-size: 20px;
+    line-height: 24px;
+    color: #000;
+    margin-bottom: 36px;
+    max-width: 372px;
+}
+
+.main__btn {
+    width: 300px;
+    height: 70px;
+    border-radius: 40px;
+    background: linear-gradient(180deg, #FA3A68 0%, #CC1637 100%);
+    filter: drop-shadow(1px 0px 29px rgba(207, 87, 109, 0.97));
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #FFFFFF;
+    transition: .6s all;
+}
+
+.main__btn:hover {
+    transform: translateY(-5px);
+}
+
+.main__animals-pics {
+    position: absolute;
+    right: -4%;
+    bottom: 0;
+}
+
+/* .mini__slider {
+    width: 600px;
+    height: 300px;
+  } */
