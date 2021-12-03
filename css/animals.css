@@ -1,0 +1,64 @@
+.animals-main {
+  margin-top: 150px;
+}
+
+.filter-section {
+  margin-bottom: 60px;
+}
+
+.filter-section__title {
+  margin-bottom: 25px;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 109%;
+  color: #000;
+}
+
+.filter-section__categories {
+  display: flex;
+  justify-content: space-between;
+}
+
+.category {
+  min-width: 165px;
+  padding: 12.5px 21px;
+  border: 1px solid #595959;
+  box-sizing: border-box;
+  border-radius: 27px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.category:hover {
+  background: rgba(207, 29, 29, 0.7);
+  border: 1px solid #9d0000;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease-in;
+}
+
+.category--selected {
+  background: rgba(207, 29, 29, 0.7);
+  border: 1px solid #9d0000;
+  box-sizing: border-box;
+  border-radius: 27px;
+  color: #fff;
+}
+
+.animals-section {
+
+}
+
+.animals-section__list {}
+
+.animal-card {}
+
+.animal-card__header {}
+
+.animal-card__main {}
+
+.animal-card__footer
+
+.pagination-section {}

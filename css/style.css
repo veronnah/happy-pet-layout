@@ -40,6 +40,7 @@ button {
     width: 100%;
     position: absolute;
     z-index: 2;
+    top: 0;
 }
 
 .header__inner {

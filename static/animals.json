@@ -1,0 +1,32 @@
+[
+  {
+    "age": 4,
+    "vaccinated": true,
+    "image": "../img/animals/dog-doberman.png",
+    "name": "Doberman",
+    "description": "Świetny nowy przyjaciel dla całej rodziny. Chroni i uwielbia",
+    "tag": "Pies",
+    "subTag": "Drapieżnik",
+    "price": "6 770zł."
+  },
+  {
+    "age": 3,
+    "vaccinated": true,
+    "image": "../img/animals/cat-wesl.png",
+    "name": "Kot z krzywymi uszami",
+    "description": "Idealna dziewczyna na deszczowe zimne czasy",
+    "tag": "Koty",
+    "subTag": null,
+    "price": "6 770zł."
+  },
+  {
+    "age": 4,
+    "vaccinated": false,
+    "image": "../img/animals/parrot-ara.png",
+    "name": "Papuga ara",
+    "description": "Zwierzak, który nie sprawi, że się znudzisz",
+    "tag": "Papugi",
+    "subTag": "Drapieżnik",
+    "price": "6 770zł."
+  }
+]
