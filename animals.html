@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/animals.css">
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <title>Zwierzeta</title>
+  <link rel="shortcut icon" href="./img/favicon_io/favicon-32x32.png" type="image/png">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+        <div class="header__inner">
+            <a href="#!" class="logo">
+              <img src="./img/logo.svg" alt="logo">
+            </a>
+            <nav class="header__nav">
+                <ul>
+                  <li><a href="#!" class="active">Strona Główna</a></li>
+                  <li><a href="zwierzeta.html">Zwierzęta</a></li>
+                  <li><a href="#!">O nas</a></li>
+                  <li><a href="#!">Kontakty</a></li>
+                </ul>
+            </nav>
+            <a href="tel:+487332378" class="call"><img src="./img/icons/phone.svg">+48 733 23-78</a>
+            <div class="header__cart-dropdown">
+              <img class="cart-icon" src="./img/icons/cart.svg">
+              <span class="price">10 990zł.</span>
+              <img class="arrow__cart-down" src="./img/icons/arrow_down-cart.svg">
+            </div>
+        </div>
+    </div>
+  </header>
+
+  <main class="animals-main">
+    <section class="container filter-section">
+      <h2 class="filter-section__title">Filter</h2>
+      <ul class="filter-section__categories" id="filterSectionCategories"></ul>
+    </section>
+
+    <section class="container animals-section">
+      <ul class="animals-section__list" id="animalsSectionList"></ul>
+    </section>
+  </main>
+
+  <footer></footer>
+</body>
+</html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    fetchAnimals();
+    generateFilter();
+  });
+
+  const categoriesList = document.getElementById("filterSectionCategories");
+  let animalsList = document.getElementById("animalsSectionList");
+  let selectedIdx = 0;
+  let fetchedAnimals = null;
+
+  const fetchAnimals = async () => {
+    try {
+      const response = await fetch('./static/animals.json');
+      fetchedAnimals = await response.json();
+      
+      generateAnimalsCard(fetchedAnimals, 0);
+    } catch (e) {
+      console.log('e', e);
+    }
+  };
+
+  const generateAnimalsCard = (animals, filterIdx) => {
+    animalsList.innerHTML = null;
+    let filteredAnimals = null;
+
+    if (Number(filterIdx) === 0) {
+      filteredAnimals = animals;
+    } else {
+      filteredAnimals = animals.filter((animal) => animal.filterType === Number(filterIdx));
+    }
+
+    filteredAnimals.forEach((animal) => {
+      const animalVaccinated  = animal.vaccinated ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
+
+      const content = `<div class="animal-card">
+          <div class="animal-card__header">
+            <div class="header-box">
+              <p class="header-box__age">${animal.age}</p>
+              miesiące
+            </div>
+            ${animalVaccinated}
+          </div>
+          <div class="animal-card__main">
+            <img src="./img/animals/${animal.image}" alt="dog">
+            <h3 class="main-box__title">${animal.name}</h3>
+            <p class="main-box__description">
+              ${animal.description}
+            </p>
+            <div class="main-box__tags">
+              <p>${animal.tag}</p>
+              <p>${animal.subTag}</p>
+            </div>
+          </div>
+          <div class="animal-card__footer">
+            <h4 class="footer-box__price">${animal.price}.</h4>
+            <button class="footer-box__button">
+              Kupić
+              <img src="./img/icons/buy-icon.svg" alt="buy">
+            </button>
+          </div>
+        </div>
+      `;
+
+      animalsList.innerHTML += content;
+    })
+  }
+
+  const generateFilter = () => {
+    const categories = ['Wsystkie', 'Psy', 'Koty', 'Papugi', 'Chomiki', 'Ryby', 'Gady'];
+
+    categories.forEach((category, idx) => {
+      const link = `<li data-idx=${idx} class="category ${selectedIdx === idx ? `category--selected` : ''}">${category}</li>`;
+
+      categoriesList.innerHTML += link;
+    })
+  };
+
+  categoriesList.addEventListener('click', (e) => {
+    let target = e.target;
+
+    while (target && target.parentNode !== categoriesList) {
+      target = target.parentNode;
+      if(!target) return;
+    }
+
+    if (target.tagName === 'LI'){
+      const currentFilterType = document.getElementsByClassName('category--selected');
+      currentFilterType[0].classList.remove('category--selected');
+      target.classList.add('category--selected');
+      generateAnimalsCard(fetchedAnimals, target.dataset.idx);
+    }
+  });
+</script>
