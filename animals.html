@@ -50,13 +50,7 @@
     </section>
 
     <section class="container animals-section">
-      <ul class="animals-section__list">
-        <div class="animal-card">
-          <div class="animal-card__header"></div>
-          <div class="animal-card__main"></div>
-          <div class="animal-card__footer"></div>
-        </div>
-      </ul>
+      <ul class="animals-section__list" id="animalsSectionList"></ul>
     </section>
 
     <section class="container pagination-section"></section>
@@ -65,3 +59,58 @@
   <footer></footer>
 </body>
 </html>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function(){
+    fetchAnimals();
+  })
+
+  const fetchAnimals = async () => {
+    try {
+      const response = await fetch('./static/animals.json');
+      
+      generateAnimalsCard(await response.json())
+    } catch (e) {
+      console.log('e', e);
+    }
+  }
+
+  const generateAnimalsCard = (animals) => {
+    const list = document.getElementById("animalsSectionList");
+    
+    animals.forEach((animal)=>{
+      const animalVaccinated  = animal.vaccinated ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
+
+      const content = `<div class="animal-card">
+          <div class="animal-card__header">
+            <div class="header-box">
+              <p class="header-box__age">${animal.age}</p>
+              miesiące
+            </div>
+            ${animalVaccinated}
+          </div>
+          <div class="animal-card__main">
+            <img src="./img/animals/${animal.image}" alt="dog">
+            <h3 class="main-box__title">${animal.name}</h3>
+            <p class="main-box__description">
+              ${animal.description}
+            </p>
+            <div class="main-box__tags">
+              <p>${animal.tag}</p>
+              <p>${animal.subTag}</p>
+            </div>
+          </div>
+          <div class="animal-card__footer">
+            <h4 class="footer-box__price">${animal.price}.</h4>
+            <button class="footer-box__button">
+              Kupić
+              <img src="./img/icons/buy-icon.svg" alt="buy">
+            </button>
+          </div>
+        </div>
+      `;
+
+      list.innerHTML += content;
+    })
+  }
+</script>
