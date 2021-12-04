@@ -38,22 +38,12 @@
   <main class="animals-main">
     <section class="container filter-section">
       <h2 class="filter-section__title">Filter</h2>
-      <ul class="filter-section__categories">
-        <li class="category category--selected">Wsystkie</li>
-        <li class="category">Psy</li>
-        <li class="category">Koty</li>
-        <li class="category">Papugi</li>
-        <li class="category">Chomiki</li>
-        <li class="category">Ryby</li>
-        <li class="category">Gady</li>
-      </ul>
+      <ul class="filter-section__categories" id="filterSectionCategories"></ul>
     </section>
 
     <section class="container animals-section">
       <ul class="animals-section__list" id="animalsSectionList"></ul>
     </section>
-
-    <section class="container pagination-section"></section>
   </main>
 
   <footer></footer>
@@ -61,24 +51,38 @@
 </html>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function(){
+  document.addEventListener('DOMContentLoaded', () => {
     fetchAnimals();
-  })
+    generateFilter();
+  });
+
+  const categoriesList = document.getElementById("filterSectionCategories");
+  let animalsList = document.getElementById("animalsSectionList");
+  let selectedIdx = 0;
+  let fetchedAnimals = null;
 
   const fetchAnimals = async () => {
     try {
       const response = await fetch('./static/animals.json');
+      fetchedAnimals = await response.json();
       
-      generateAnimalsCard(await response.json())
+      generateAnimalsCard(fetchedAnimals, 0);
     } catch (e) {
       console.log('e', e);
     }
-  }
+  };
 
-  const generateAnimalsCard = (animals) => {
-    const list = document.getElementById("animalsSectionList");
-    
-    animals.forEach((animal)=>{
+  const generateAnimalsCard = (animals, filterIdx) => {
+    animalsList.innerHTML = null;
+    let filteredAnimals = null;
+
+    if (Number(filterIdx) === 0) {
+      filteredAnimals = animals;
+    } else {
+      filteredAnimals = animals.filter((animal) => animal.filterType === Number(filterIdx));
+    }
+
+    filteredAnimals.forEach((animal) => {
       const animalVaccinated  = animal.vaccinated ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
 
       const content = `<div class="animal-card">
@@ -110,7 +114,33 @@
         </div>
       `;
 
-      list.innerHTML += content;
+      animalsList.innerHTML += content;
     })
   }
+
+  const generateFilter = () => {
+    const categories = ['Wsystkie', 'Psy', 'Koty', 'Papugi', 'Chomiki', 'Ryby', 'Gady'];
+
+    categories.forEach((category, idx) => {
+      const link = `<li data-idx=${idx} class="category ${selectedIdx === idx ? `category--selected` : ''}">${category}</li>`;
+
+      categoriesList.innerHTML += link;
+    })
+  };
+
+  categoriesList.addEventListener('click', (e) => {
+    let target = e.target;
+
+    while (target && target.parentNode !== categoriesList) {
+      target = target.parentNode;
+      if(!target) return;
+    }
+
+    if (target.tagName === 'LI'){
+      const currentFilterType = document.getElementsByClassName('category--selected');
+      currentFilterType[0].classList.remove('category--selected');
+      target.classList.add('category--selected');
+      generateAnimalsCard(fetchedAnimals, target.dataset.idx);
+    }
+  });
 </script>
