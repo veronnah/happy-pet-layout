@@ -293,3 +293,146 @@ button {
     margin-top: 120px;
     margin-bottom: 68px;
 }
+
+.footer {
+    position: relative;
+    padding-top: 115px;
+    padding-bottom: 52px;
+    background-color: #000;
+    color: #fff;
+}
+
+.footer__title {
+    margin-bottom: 48px;
+    font-weight: 800;
+    font-size: 30px;
+    line-height: 109.42%;
+}
+
+.footer-form {
+    max-width: 630px;
+    margin-bottom: 160px;
+}
+
+.footer-form__checkboxes {
+    display: flex;
+    align-items: flex-start;
+}
+
+.footer-form__checkboxes .checkboxes-wrap {
+    margin-right: 100px;
+}
+
+.footer-form__inputs-box:not(:last-child) {
+    margin-bottom: 32px;
+}
+
+.footer-form__input,
+.footer-form__textarea {
+    min-width: 296px;
+    padding: 6px;
+    background: none;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 109.42%;
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #fff;
+}
+
+.space-xl {
+    margin-right: 30px;
+}
+
+.footer-form__input::placeholder,
+.footer-form__textarea::placeholder {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 109.42%;
+    color: rgb(196, 196, 196);
+}
+
+.footer-form__textarea {
+    margin-bottom: 35px;
+    width: 100%;
+}
+
+.footer-form__submit-btn {
+    padding: 10px 64px;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 18px;
+    color: #fff;
+    background: linear-gradient(180deg, #FA3A68 0%, #CC1637 100%);
+    box-shadow: 0px 0px 29px 3px rgba(255, 90, 128, 0.54);
+    border-radius: 40px;
+}
+
+.footer-form__submit-btn:hover {
+    background: linear-gradient(180deg, #b32345 0%, #c3566a 100%);
+}
+
+.footer-form__checkbox-group {
+    margin-bottom: 8px;
+}
+
+.footer-form__checkbox-group input {
+    padding: 0;
+    height: initial;
+    width: initial;
+    margin-bottom: 0;
+    display: none;
+    cursor: pointer;
+}
+
+.footer-form__checkbox-group label {
+    position: relative;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.footer-form__checkbox-group label:before {
+    content:'';
+    -webkit-appearance: none;
+    background-color: transparent;
+    border: 1px solid #fff;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+    padding: 6px;
+    display: inline-block;
+    position: relative;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.footer-form__checkbox-group input:checked + label:after {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    width: 4px;
+    height: 12px;
+    border: solid #FFC531;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.footer-detail {
+    max-width: 630px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.075em;
+    color: #fff;
+}
+
+.footer__dog-image {
+    position: absolute;
+    right: 0;
+    max-width: 830px;
+    bottom: 0;
+    right: 24px;
+}

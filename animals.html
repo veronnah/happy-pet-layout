@@ -46,7 +46,70 @@
     </section>
   </main>
 
-  <footer></footer>
+  <footer class="footer">
+    <div class="container">
+        <h2 class="footer__title">Masz pytania? Zapytaj się!</h2>
+        <form action="#" class="footer-form">
+            <div class="footer-form__inputs-box">
+                <input
+                    type="text"
+                    class="footer-form__input space-xl"
+                    placeholder="Wpisz swoje imię"
+                >
+                <input
+                    type="email"
+                    class="footer-form__input"
+                    placeholder="Wprowadź e-mail"
+                >
+            </div>
+            <div class="footer-form__inputs-box">
+                <input
+                    type="text"
+                    class="footer-form__input space-xl"
+                    placeholder="Wpisz swój telefon"
+                >
+                <input
+                    type="text"
+                    class="footer-form__input"
+                    placeholder="Temat pytania"
+                >
+            </div>
+            <textarea
+                rows="8"
+                cols="45"
+                name="text"
+                class="footer-form__textarea"
+                placeholder="Wpisz swoją wiadomość"
+            ></textarea>
+            <div class="footer-form__checkboxes">
+                <div class="checkboxes-wrap">
+                    <div class="footer-form__checkbox-group">
+                        <input type="checkbox" id="wyrzzamZgode">
+                        <label for="wyrzzamZgode">
+                            Wyrażam zgodę na przetwarzanie danych osobowych
+                        </label>
+                    </div>
+                    <div class="footer-form__checkbox-group">
+                        <input type="checkbox" id="politykaPryw">
+                        <label for="politykaPryw">
+                            Zgadzam się z polityką prywatności
+                        </label>
+                    </div>
+                </div>
+                <button class="footer-form__submit-btn">Wyślij</button>
+            </div>
+        </form>
+        <div class="footer-detail">
+            <img src="./img/footer-logo.png" alt="logo">
+            <div>
+                <img src="./img/icons/phone-white.svg" alt="phone">
+                +48 733 23-78 
+            </div>
+            <p>2021 © Wszelkie prawa zastrzeżone</p>
+        </div>
+    </div>
+    <img src="./img/footer-dog.png" alt="dog" class="footer__dog-image">
+  </footer>
   <script src="./js/swiper-bundle.min.js"></script>
   <script src="./js/main.js"></script>
 </body>
