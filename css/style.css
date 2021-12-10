@@ -435,4 +435,5 @@ button {
     max-width: 830px;
     bottom: 0;
     right: 24px;
+    filter: brightness(0.5)
 }
