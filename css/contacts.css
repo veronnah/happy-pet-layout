@@ -1,0 +1,29 @@
+body {
+    background: rgba(247, 187, 117, 0.25);
+}
+
+.contacts-main{
+    margin: 150px 0;
+}
+
+.contacts-section__title{
+    margin-bottom: 60px;
+    font-weight: 800;
+    font-size: 38px;
+    margin-top: 200px;
+    text-align: center;
+    line-height: 109%;
+    color: #000;
+    letter-spacing: 4px;
+}
+
+.contacts-section__image{
+    text-align: center;
+    margin-left: 50px;
+}
+
+.ways{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}

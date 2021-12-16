@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/animals.css">
+  <link rel="stylesheet" href="./css/contacts.css">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
   <title>Zwierzeta</title>
@@ -35,14 +35,21 @@
     </div>
   </header>
 
-  <main class="animals-main">
-    <section class="container filter-section">
-      <h2 class="filter-section__title">Filter</h2>
-      <ul class="filter-section__categories" id="filterSectionCategories"></ul>
+  <main class="contacts-main">
+    <section class="container contacts-section">
+      <h2 class="contacts-section__title">Skontaktuj się z nami!</h2>
+        <div class="contacts-section__image">
+            <img src="./img/contacts/post.png" alt="instagram-post">
+        </div>
     </section>
+    <section class="container contacts-ways">
+        <ul class="ways">
+            <li><img src="./img/contacts/facebook.svg" alt=""></li>
+            <li><img src="./img/contacts/instagram.svg" alt=""></li>
+            <li><img src="./img/contacts/youtube.svg" alt=""></li>
+            <li><img src="./img/contacts/mail.svg" alt=""></li>
 
-    <section class="container animals-section">
-      <ul class="animals-section__list" id="animalsSectionList"></ul>
+        </ul>
     </section>
   </main>
 
@@ -114,98 +121,3 @@
   <script src="./js/main.js"></script>
 </body>
 </html>
-
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetchAnimals();
-    generateFilter();
-  });
-
-  const categoriesList = document.getElementById("filterSectionCategories");
-  let animalsList = document.getElementById("animalsSectionList");
-  let selectedIdx = 0;
-  let fetchedAnimals = null;
-
-  const fetchAnimals = async () => {
-    try {
-      const response = await fetch('./static/animals.json');
-      fetchedAnimals = await response.json();
-      
-      generateAnimalsCard(fetchedAnimals, 0);
-    } catch (e) {
-      console.log('e', e);
-    }
-  };
-
-  const generateAnimalsCard = (animals, filterIdx) => {
-    animalsList.innerHTML = null;
-    let filteredAnimals = null;
-
-    if (Number(filterIdx) === 0) {
-      filteredAnimals = animals;
-    } else {
-      filteredAnimals = animals.filter((animal) => animal.filterType === Number(filterIdx));
-    }
-
-    filteredAnimals.forEach((animal) => {
-      const animalVaccinated  = animal.vaccinated ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
-
-      const content = `<div class="animal-card">
-          <div class="animal-card__header">
-            <div class="header-box">
-              <p class="header-box__age">${animal.age}</p>
-              miesiące
-            </div>
-            ${animalVaccinated}
-          </div>
-          <div class="animal-card__main">
-            <img src="./img/animals/${animal.image}" alt="dog">
-            <h3 class="main-box__title">${animal.name}</h3>
-            <p class="main-box__description">
-              ${animal.description}
-            </p>
-            <div class="main-box__tags">
-              <p>${animal.tag}</p>
-              <p>${animal.subTag}</p>
-            </div>
-          </div>
-          <div class="animal-card__footer">
-            <h4 class="footer-box__price">${animal.price}.</h4>
-            <button class="footer-box__button">
-              Kupić
-              <img src="./img/icons/buy-icon.svg" alt="buy">
-            </button>
-          </div>
-        </div>
-      `;
-
-      animalsList.innerHTML += content;
-    })
-  }
-
-  const generateFilter = () => {
-    const categories = ['Wsystkie', 'Psy', 'Koty', 'Papugi', 'Chomiki', 'Ryby', 'Gady'];
-
-    categories.forEach((category, idx) => {
-      const link = `<li data-idx=${idx} class="category ${selectedIdx === idx ? `category--selected` : ''}">${category}</li>`;
-
-      categoriesList.innerHTML += link;
-    })
-  };
-
-  categoriesList.addEventListener('click', (e) => {
-    let target = e.target;
-
-    while (target && target.parentNode !== categoriesList) {
-      target = target.parentNode;
-      if(!target) return;
-    }
-
-    if (target.tagName === 'LI'){
-      const currentFilterType = document.getElementsByClassName('category--selected');
-      currentFilterType[0].classList.remove('category--selected');
-      target.classList.add('category--selected');
-      generateAnimalsCard(fetchedAnimals, target.dataset.idx);
-    }
-  });
-</script>
