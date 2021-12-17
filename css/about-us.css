@@ -3,45 +3,40 @@ body {
 }
 
 .about-us-main {
-  margin: 150px 0;
+  margin: 200px 0;
 }
 
 .about-us-section__text {
-    /*margin-left: 50px;*/
+}
+
+.about-us-section__left-content {
+    max-width: 460px;
 }
 
 .about-us-section__title {
-    margin-bottom: 60px;
+    margin-bottom: 74px;
     font-weight: 800;
-    font-size: 24px;
+    font-size: 26px;
     line-height: 109%;
     color: #000;
-    /*letter-spacing: 4px;*/
 }
 
 .about-us-section__subtitle {
-    margin-bottom: 60px;
-    font-weight: 800;
-    font-size: 16px;
-    margin-top: 80px;
-    line-height: 109%;
+    margin-bottom: 36px;
+    font-size: 21px;
+    line-height: 109.42%;
+    font-weight: bold;
     color: #000;
 }
+
 .about-us-section__first-paragraph {
-    max-width: 350px;
-    margin-bottom: 10px;
-    font-weight: 600;
-    font-size: 16px;
-    margin-top: 50px;
-    line-height: 109%;
-    color: #000;
+    margin-bottom: 40px;
 }
-.about-us-section__second-paragraph {
-    max-width: 350px;
-    margin-bottom: 60px;
-    font-weight: 600;
-    font-size: 16px;
-    margin-top: 30px;
+
+.about-us-section__first-paragraph,
+.about-us-section__second-paragraph  {
+    font-weight: 500;
+    font-size: 17px;
     line-height: 109%;
     color: #000;
 }
@@ -49,10 +44,23 @@ body {
 .about-us-section__main-content-container {
     display: flex;
     justify-content: space-between;
-    margin-top: 200px;
 }
 
-.about-us-section__right-content {
-    margin-right: 200px;
-    margin-top: 100px;
+.about-us-section__image {
+    max-width: 740px;
+}
+
+.about-us-section__prac {
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 46px;
+    letter-spacing: 0.075em;
+    color: #000;
+    text-align: center;
+}
+
+.about-us-section_prac-list {
+    margin-top: 74px;
+    display: flex;
+    justify-content: space-between;
 }
