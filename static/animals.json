@@ -1,5 +1,6 @@
 [
   {
+    "id": 0,
     "age": 4,
     "vaccinated": true,
     "image": "dog-doberman.png",
@@ -7,10 +8,11 @@
     "description": "Świetny nowy przyjaciel dla całej rodziny. Chroni i uwielbia",
     "tag": "Pies",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "5 770zł",
     "filterType": 1
   },
   {
+    "id": 1,
     "age": 3,
     "vaccinated": true,
     "image": "cat-wesl.png",
@@ -18,10 +20,11 @@
     "description": "Idealna dziewczyna na deszczowe zimne czasy",
     "tag": "Koty",
     "subTag": null,
-    "price": "6 770zł",
+    "price": "6 370zł",
     "filterType": 2
   },
   {
+    "id": 2,
     "age": 4,
     "vaccinated": false,
     "image": "parrot-ara.png",
@@ -29,10 +32,11 @@
     "description": "Zwierzak, który nie sprawi, że się znudzisz",
     "tag": "Papugi",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "2 710zł",
     "filterType": 3
   },
   {
+    "id": 3,
     "age": 4,
     "vaccinated": true,
     "image": "dog-doberman.png",
@@ -40,10 +44,11 @@
     "description": "Świetny nowy przyjaciel dla całej rodziny. Chroni i uwielbia",
     "tag": "Pies",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "2 110zł",
     "filterType": 1
   },
   {
+    "id": 4,
     "age": 3,
     "vaccinated": true,
     "image": "cat-wesl.png",
@@ -51,10 +56,11 @@
     "description": "Idealna dziewczyna na deszczowe zimne czasy",
     "tag": "Koty",
     "subTag": null,
-    "price": "6 770zł",
+    "price": "1 580zł",
     "filterType": 2
   },
   {
+    "id": 5,
     "age": 4,
     "vaccinated": false,
     "image": "parrot-ara.png",
@@ -62,10 +68,11 @@
     "description": "Zwierzak, który nie sprawi, że się znudzisz",
     "tag": "Papugi",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "3 270zł",
     "filterType": 3
   },
   {
+    "id": 6,
     "age": 4,
     "vaccinated": true,
     "image": "dog-doberman.png",
@@ -73,10 +80,11 @@
     "description": "Świetny nowy przyjaciel dla całej rodziny. Chroni i uwielbia",
     "tag": "Pies",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "4 760zł",
     "filterType": 1
   },
   {
+    "id": 7,
     "age": 3,
     "vaccinated": true,
     "image": "cat-wesl.png",
@@ -84,10 +92,11 @@
     "description": "Idealna dziewczyna na deszczowe zimne czasy",
     "tag": "Koty",
     "subTag": null,
-    "price": "6 770zł",
+    "price": "4 270zł",
     "filterType": 2
   },
   {
+    "id": 8,
     "age": 4,
     "vaccinated": false,
     "image": "parrot-ara.png",
@@ -95,10 +104,11 @@
     "description": "Zwierzak, który nie sprawi, że się znudzisz",
     "tag": "Papugi",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "2 770zł",
     "filterType": 3
   },
   {
+    "id": 9,
     "age": 4,
     "vaccinated": true,
     "image": "dog-doberman.png",
@@ -106,10 +116,11 @@
     "description": "Świetny nowy przyjaciel dla całej rodziny. Chroni i uwielbia",
     "tag": "Pies",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "1 770zł",
     "filterType": 1
   },
   {
+    "id": 10,
     "age": 3,
     "vaccinated": true,
     "image": "cat-wesl.png",
@@ -117,10 +128,11 @@
     "description": "Idealna dziewczyna na deszczowe zimne czasy",
     "tag": "Koty",
     "subTag": null,
-    "price": "6 770zł",
+    "price": "7 770zł",
     "filterType": 2
   },
   {
+    "id": 11,
     "age": 4,
     "vaccinated": false,
     "image": "parrot-ara.png",
@@ -128,7 +140,7 @@
     "description": "Zwierzak, który nie sprawi, że się znudzisz",
     "tag": "Papugi",
     "subTag": "Drapieżnik",
-    "price": "6 770zł",
+    "price": "4 770zł",
     "filterType": 3
   }
 ]

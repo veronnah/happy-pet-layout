@@ -83,6 +83,11 @@ button {
     margin-right: 7px;
 }
 
+.header__cart-dropdown {
+    display: flex;
+    align-items: center;
+}
+
 .header__cart-dropdown span {
     font-size: 18px;
     color: #000;

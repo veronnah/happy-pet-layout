@@ -1,4 +1,20 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const cartCounter = document.getElementById("cartCounter");
+  const cartLS = localStorage.getItem("cart");
+
+  if (!cartLS) {
+    localStorage.setItem("cart", []);
+    cartCounter.textContent = "Cart";
+  } else {
+    const cartPrice = JSON.parse(cartLS).reduce((acc, animal) => {
+      const animalPrice = parseInt(animal.price.replace(/\s+/g, ""));
+
+      return acc + animalPrice;
+    }, 0);
+
+    cartCounter.textContent = `${cartPrice} zł.`;
+  }
+
   const headerNavList = document.querySelectorAll("#headerNavList li a");
 
   headerNavList.forEach((link) => {

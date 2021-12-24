@@ -27,8 +27,8 @@
             </nav>
             <a href="tel:+487332378" class="call"><img src="./img/icons/phone.svg">+48 733 23-78</a>
             <div class="header__cart-dropdown">
-              <img class="cart-icon" src="./img/icons/cart.svg">
-              <span class="price">10 990zł.</span>
+              <a href="cart.html"><img class="cart-icon" src="./img/icons/cart.svg"></a>
+              <a href="cart.html"><span id="cartCounter" class="price"></span></a>
               <img class="arrow__cart-down" src="./img/icons/arrow_down-cart.svg">
             </div>
         </div>
@@ -116,15 +116,12 @@
 </html>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    fetchAnimals();
-    generateFilter();
-  });
-
   const categoriesList = document.getElementById("filterSectionCategories");
   let animalsList = document.getElementById("animalsSectionList");
   let selectedIdx = 0;
   let fetchedAnimals = null;
+  const cartFromLS = localStorage.getItem("cart");
+  const parsedCart = cartFromLS ? JSON.parse(cartFromLS) : [];
 
   const fetchAnimals = async () => {
     try {
@@ -147,7 +144,8 @@
       filteredAnimals = animals.filter((animal) => animal.filterType === Number(filterIdx));
     }
 
-    filteredAnimals.forEach((animal) => {
+
+    filteredAnimals.forEach((animal, idx) => {
       const animalVaccinated  = animal.vaccinated ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
 
       const content = `<div class="animal-card">
@@ -171,8 +169,8 @@
           </div>
           <div class="animal-card__footer">
             <h4 class="footer-box__price">${animal.price}.</h4>
-            <button class="footer-box__button">
-              Kupić
+            <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
+              Kupic
               <img src="./img/icons/buy-icon.svg" alt="buy">
             </button>
           </div>
@@ -207,5 +205,59 @@
       target.classList.add('category--selected');
       generateAnimalsCard(fetchedAnimals, target.dataset.idx);
     }
+  });
+
+  // cart logic //
+  let cartAnimals = [];
+
+  if (cartFromLS) {
+    cartAnimals = JSON.parse(cartFromLS);
+  } 
+
+  let fetchedAnFor = null;
+
+  const fetchAnimalsQWEWE = async () => {
+    try {
+      const response = await fetch('./static/animals.json');
+      fetchedAnFor = await response.json();
+    } catch (e) {
+      console.log('e', e);
+    }
+  }
+
+  const onBuy = (e) => {
+    const targetId = event.target.id;
+    const targetFetchedAnimal = fetchedAnFor[targetId];
+    event.target.innerHTML = `
+      <div style="cursor: not-allowed;">
+        Kupione
+        <img src="./img/icons/in-cart-icon.svg" alt="in cart">
+      </div>
+    `
+
+    if (targetFetchedAnimal) {
+      cartAnimals.push(targetFetchedAnimal)
+      localStorage.setItem('cart', JSON.stringify(cartAnimals));
+    }
+  }
+
+  const cartChecker = () => {
+    parsedCart.forEach((animal) => {
+      const targetAnimal = animalsList.children[animal.id];
+
+      targetAnimal.getElementsByClassName('footer-box__button')[0].innerHTML = `
+        <div style="cursor: not-allowed;">
+          Kupione
+          <img src="./img/icons/in-cart-icon.svg" alt="in cart">
+        </div>
+      `
+    })
+  }
+
+  document.addEventListener('DOMContentLoaded', async () => {
+    fetchAnimals();
+    await fetchAnimalsQWEWE();
+    generateFilter();
+    cartChecker();
   });
 </script>

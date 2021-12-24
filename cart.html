@@ -4,14 +4,14 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/about-us.css">
+  <link rel="stylesheet" href="./css/cart.css">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
-  <title>O nas</title>
+  <title>Cart</title>
   <link rel="shortcut icon" href="./img/favicon_io/favicon-32x32.png" type="image/png">
 </head>
 <body>
-    <header class="header">
+  <header class="header">
     <div class="container">
         <div class="header__inner">
             <a href="index.html" class="logo">
@@ -35,35 +35,11 @@
     </div>
   </header>
 
-    <main class="about-us-main">
-        <section class="container about-us-section__text">
-            <div class="about-us-section__main-content-container">
-                <div class="about-us-section__left-content">
-                    <h2 class="about-us-section__title">O hodowli Happy Pet!</h2>
-                    <h4 class="about-us-section__subtitle">Jesteśmy zespołem marzycieli</h4>
-                    <div class="about-us-section__first-paragraph">
-                        Szkółka Agrus to nie tylko wyjątkowe miejsce, które śmiało można nazwać „terytorium roślin”. Jesteśmy firmą produkującą ponad 500 różnych rodzajów roślin
-                    </div>
-                    <div class="about-us-section__second-paragraph">
-                        Miejsce lub instytucja do uprawy i hodowli roślin lub zwierząt, a także poletka doświadczalna, na której są badane.
-                    </div>
-                </div>
-                <div class="about-us-section__right-content">
-                    <img src="./img/about-us/main.png" alt="main" class="about-us-section__image">
-                </div>
-            </div>
-            <div class="about-us-section__prac">
-                Sprawdź kto dla ciebie pracuje
-
-                <ul class="about-us-section_prac-list">
-                    <li><img src="./img/about-us/a-ver.png" alt=""></li>
-                    <li><img src="./img/about-us/a-rom.png" alt=""></li>
-                    <li><img src="./img/about-us/a-naz.png" alt=""></li>
-                    <li><img src="./img/about-us/a-vld.png" alt=""></li>
-                </ul>
-            </div>
-        </section>
-    </main>
+  <main class="cart-main">
+    <section class="container">
+      <ul class="cart-section__list" id="cartSectionList"></ul>
+    </section>
+  </main>
 
   <footer class="footer">
     <div class="container">
@@ -122,7 +98,7 @@
             <img src="./img/footer-logo.png" alt="logo">
             <div>
                 <img src="./img/icons/phone-white.svg" alt="phone">
-                +48 733 23-78
+                +48 733 23-78 
             </div>
             <p>2021 © Wszelkie prawa zastrzeżone</p>
         </div>
@@ -133,3 +109,52 @@
   <script src="./js/main.js"></script>
 </body>
 </html>
+
+<script>
+  let cartList = document.getElementById("cartSectionList");
+  const cartFromLS = localStorage.getItem("cart");
+  const parsedCart = cartFromLS ? JSON.parse(cartFromLS) : [];
+
+  const generateAnimalsCard = (animals, filterIdx) => {
+    cartList.innerHTML = null;
+
+    parsedCart.forEach((animal, idx) => {
+      const animalVaccinated  = animal.vaccinated ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
+
+      const content = `<div class="animal-card">
+          <div class="animal-card__header">
+            <div class="header-box">
+              <p class="header-box__age">${animal.age}</p>
+              miesiące
+            </div>
+            ${animalVaccinated}
+          </div>
+          <div class="animal-card__main">
+            <img src="./img/animals/${animal.image}" alt="dog">
+            <h3 class="main-box__title">${animal.name}</h3>
+            <p class="main-box__description">
+              ${animal.description}
+            </p>
+            <div class="main-box__tags">
+              <p>${animal.tag}</p>
+              <p>${animal.subTag}</p>
+            </div>
+          </div>
+          <div class="animal-card__footer">
+            <h4 class="footer-box__price">${animal.price}.</h4>
+            <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
+              Kupic
+              <img src="./img/icons/buy-icon.svg" alt="buy">
+            </button>
+          </div>
+        </div>
+      `;
+
+      cartList.innerHTML += content;
+    })
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    generateAnimalsCard();
+  });
+</script>
