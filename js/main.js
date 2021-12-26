@@ -1,44 +1,34 @@
 const cartLS = localStorage.getItem("cart");
-
-const swiper = new Swiper(".mini__slider", {
-  loop: true,
-
-  slidesPerView: 2,
-  spaceBetween: 20,
-
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-
-  scrollbar: {
-    el: ".swiper-scrollbar",
-    // hide: true,
-    draggable: true,
-  },
-});
-
-// animals.js
-const categoriesList = document.getElementById("filterSectionCategories");
-let animalsList = document.getElementById("animalsSectionList");
-let selectedIdx = 0;
+const parsedCartLs = cartLS ? JSON.parse(cartLS) : [];
+const cartAnimals = cartLS ? JSON.parse(cartLS) : [];
+const filterSectionList = document.getElementById("filterSectionList");
+let cartSectionList = document.getElementById("cartSectionList");
+let animalsSectionList = document.getElementById("animalsSectionList");
+let selectedFilterIdx = 0;
 let fetchedAnimals = null;
-const cartFromLS = localStorage.getItem("cart");
-const parsedCart = cartFromLS ? JSON.parse(cartFromLS) : [];
+
+const fetchAnimalsForShop = async () => {
+  fetchedAnimals = await fetchAnimals();
+  generateAnimalsCard(fetchedAnimals, 0);
+};
+
+const fetchAnimalsForCart = async () => {
+  fetchedAnimals = await fetchAnimals();
+};
 
 const fetchAnimals = async () => {
   try {
     const response = await fetch("./static/animals.json");
-    fetchedAnimals = await response.json();
-
-    generateAnimalsCard(fetchedAnimals, 0);
+    return await response.json();
   } catch (e) {
     console.log("e", e);
   }
 };
 
 const generateAnimalsCard = (animals, filterIdx) => {
-  animalsList.innerHTML = null;
+  if (!animalsSectionList) return;
+
+  animalsSectionList.innerHTML = null;
   let filteredAnimals = null;
 
   if (Number(filterIdx) === 0) {
@@ -83,11 +73,13 @@ const generateAnimalsCard = (animals, filterIdx) => {
         </div>
       `;
 
-    animalsList.innerHTML += content;
+    animalsSectionList.innerHTML += content;
   });
 };
 
 const generateFilter = () => {
+  if (!filterSectionList) return;
+
   const categories = [
     "Wsystkie",
     "Psy",
@@ -100,51 +92,59 @@ const generateFilter = () => {
 
   categories.forEach((category, idx) => {
     const link = `<li data-idx=${idx} class="category ${
-      selectedIdx === idx ? `category--selected` : ""
+      selectedFilterIdx === idx ? `category--selected` : ""
     }">${category}</li>`;
 
-    categoriesList.innerHTML += link;
+    filterSectionList.innerHTML += link;
   });
 };
 
-categoriesList.addEventListener("click", (e) => {
-  let target = e.target;
+const generateCartCard = () => {
+  if (cartSectionList) {
+    cartSectionList.innerHTML = null;
 
-  while (target && target.parentNode !== categoriesList) {
-    target = target.parentNode;
-    if (!target) return;
-  }
+    parsedCartLs.forEach((animal, idx) => {
+      const animalVaccinated = animal.vaccinated
+        ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
+        : "";
 
-  if (target.tagName === "LI") {
-    const currentFilterType =
-      document.getElementsByClassName("category--selected");
-    currentFilterType[0].classList.remove("category--selected");
-    target.classList.add("category--selected");
-    generateAnimalsCard(fetchedAnimals, target.dataset.idx);
-  }
-});
+      const content = `<div class="animal-card">
+            <div class="animal-card__header">
+              <div class="header-box">
+                <p class="header-box__age">${animal.age}</p>
+                miesiące
+              </div>
+              ${animalVaccinated}
+            </div>
+            <div class="animal-card__main">
+              <img src="./img/animals/${animal.image}" alt="dog">
+              <h3 class="main-box__title">${animal.name}</h3>
+              <p class="main-box__description">
+                ${animal.description}
+              </p>
+              <div class="main-box__tags">
+                <p>${animal.tag}</p>
+                <p>${animal.subTag}</p>
+              </div>
+            </div>
+            <div class="animal-card__footer">
+              <h4 class="footer-box__price">${animal.price}.</h4>
+              <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
+                Usunąć
+              </button>
+            </div>
+          </div>
+        `;
 
-// cart logic //
-let cartAnimals = [];
-
-if (cartFromLS) {
-  cartAnimals = JSON.parse(cartFromLS);
-}
-
-let fetchedAnFor = null;
-
-const fetchAnimalsQWEWE = async () => {
-  try {
-    const response = await fetch("./static/animals.json");
-    fetchedAnFor = await response.json();
-  } catch (e) {
-    console.log("e", e);
+      cartSectionList.innerHTML += content;
+    });
   }
 };
 
 const onBuy = (e) => {
   const targetId = event.target.id;
-  const targetFetchedAnimal = fetchedAnFor[targetId];
+  const targetFetchedAnimal = fetchedAnimals[targetId];
+
   event.target.innerHTML = `
       <div style="cursor: not-allowed;">
         Kupione
@@ -160,8 +160,10 @@ const onBuy = (e) => {
 };
 
 const cartChecker = () => {
-  parsedCart.forEach((animal) => {
-    const targetAnimal = animalsList.children[animal.id];
+  if (!animalsSectionList) return;
+
+  parsedCartLs.forEach((animal) => {
+    const targetAnimal = animalsSectionList.children[animal.id];
 
     targetAnimal.getElementsByClassName("footer-box__button")[0].innerHTML = `
         <div style="cursor: not-allowed;">
@@ -190,12 +192,31 @@ const cartPriceCounter = () => {
   cartCounter.textContent = `${cartPrice} zł.`;
 };
 
+const showCartList = () => {
+  if (!filterSectionList) return;
+
+  filterSectionList.addEventListener("click", (e) => {
+    let target = e.target;
+
+    while (target && target.parentNode !== filterSectionList) {
+      target = target.parentNode;
+      if (!target) return;
+    }
+
+    if (target.tagName === "LI") {
+      const currentFilterType =
+        document.getElementsByClassName("category--selected");
+      currentFilterType[0].classList.remove("category--selected");
+      target.classList.add("category--selected");
+      generateAnimalsCard(fetchedAnimals, target.dataset.idx);
+    }
+  });
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
   if (!cartLS) {
     localStorage.setItem("cart", []);
   }
-
-  cartPriceCounter();
 
   const headerNavList = document.querySelectorAll("#headerNavList li a");
 
@@ -205,8 +226,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
-  fetchAnimals();
-  await fetchAnimalsQWEWE();
+  cartPriceCounter();
+  generateCartCard();
+  await fetchAnimalsForShop();
+  await fetchAnimalsForCart();
   generateFilter();
   cartChecker();
+  showCartList();
+});
+
+const swiper = new Swiper(".mini__slider", {
+  loop: true,
+
+  slidesPerView: 2,
+  spaceBetween: 20,
+
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+
+  scrollbar: {
+    el: ".swiper-scrollbar",
+    // hide: true,
+    draggable: true,
+  },
 });
