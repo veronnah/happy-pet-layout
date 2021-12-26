@@ -40,13 +40,13 @@ const generateAnimalsCard = (animals, filterIdx) => {
   }
 
   filteredAnimals.forEach((animal, idx) => {
-    const animalVaccinated = animal.vaccinated
-      ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
-      : "";
+    const animalVaccinated =
+      animal.vaccinated &&
+      `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`;
 
-    const content = `<div class="animal-card" data-id=${
+    const content = `<div class="animal-card" data-id="${
       animal.id + animal.name
-    }>
+    }">
         <div class="animal-card__header">
           <div class="header-box">
             <p class="header-box__age">${animal.age}</p>
@@ -106,9 +106,9 @@ const generateCartCard = () => {
     cartSectionList.innerHTML = null;
 
     parsedCartLS.forEach((animal, idx) => {
-      const animalVaccinated = animal.vaccinated
-        ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
-        : "";
+      const animalVaccinated =
+        animal.vaccinated &&
+        `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`;
 
       const content = `<div class="animal-card">
             <div class="animal-card__header">
@@ -166,7 +166,7 @@ const cartChecker = () => {
 
   parsedCartLS.forEach((animal) => {
     const targetAnimal = animalsSectionList.children[animal.id];
-    const isEqual = animal.id + animal.name === targetAnimal.dataset.id;
+    const isEqual = animal.id + animal.name === targetAnimal?.dataset?.id;
 
     if (isEqual) {
       targetAnimal.getElementsByClassName("footer-box__button")[0].innerHTML = `
