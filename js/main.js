@@ -1,5 +1,5 @@
 const cartLS = localStorage.getItem("cart");
-const parsedCartLs = cartLS ? JSON.parse(cartLS) : [];
+const parsedCartLS = cartLS ? JSON.parse(cartLS) : [];
 const cartAnimals = cartLS ? JSON.parse(cartLS) : [];
 const filterSectionList = document.getElementById("filterSectionList");
 let cartSectionList = document.getElementById("cartSectionList");
@@ -44,34 +44,36 @@ const generateAnimalsCard = (animals, filterIdx) => {
       ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
       : "";
 
-    const content = `<div class="animal-card">
-          <div class="animal-card__header">
-            <div class="header-box">
-              <p class="header-box__age">${animal.age}</p>
-              miesiące
-            </div>
-            ${animalVaccinated}
+    const content = `<div class="animal-card" data-id=${
+      animal.id + animal.name
+    }>
+        <div class="animal-card__header">
+          <div class="header-box">
+            <p class="header-box__age">${animal.age}</p>
+            miesiące
           </div>
-          <div class="animal-card__main">
-            <img src="./img/animals/${animal.image}" alt="dog">
-            <h3 class="main-box__title">${animal.name}</h3>
-            <p class="main-box__description">
-              ${animal.description}
-            </p>
-            <div class="main-box__tags">
-              <p>${animal.tag}</p>
-              <p>${animal.subTag}</p>
-            </div>
-          </div>
-          <div class="animal-card__footer">
-            <h4 class="footer-box__price">${animal.price}.</h4>
-            <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
-              Kupic
-              <img src="./img/icons/buy-icon.svg" alt="buy">
-            </button>
+          ${animalVaccinated}
+        </div>
+        <div class="animal-card__main">
+          <img src="./img/animals/${animal.image}" alt="dog">
+          <h3 class="main-box__title">${animal.name}</h3>
+          <p class="main-box__description">
+            ${animal.description}
+          </p>
+          <div class="main-box__tags">
+            <p>${animal.tag}</p>
+            <p>${animal.subTag}</p>
           </div>
         </div>
-      `;
+        <div class="animal-card__footer">
+          <h4 class="footer-box__price">${animal.price}.</h4>
+          <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
+            Kupic
+            <img src="./img/icons/buy-icon.svg" alt="buy">
+          </button>
+        </div>
+      </div>
+    `;
 
     animalsSectionList.innerHTML += content;
   });
@@ -103,7 +105,7 @@ const generateCartCard = () => {
   if (cartSectionList) {
     cartSectionList.innerHTML = null;
 
-    parsedCartLs.forEach((animal, idx) => {
+    parsedCartLS.forEach((animal, idx) => {
       const animalVaccinated = animal.vaccinated
         ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
         : "";
@@ -162,15 +164,18 @@ const onBuy = (e) => {
 const cartChecker = () => {
   if (!animalsSectionList) return;
 
-  parsedCartLs.forEach((animal) => {
+  parsedCartLS.forEach((animal) => {
     const targetAnimal = animalsSectionList.children[animal.id];
+    const isEqual = animal.id + animal.name === targetAnimal.dataset.id;
 
-    targetAnimal.getElementsByClassName("footer-box__button")[0].innerHTML = `
-        <div style="cursor: not-allowed;">
-          Kupione
-          <img src="./img/icons/in-cart-icon.svg" alt="in cart">
-        </div>
-      `;
+    if (isEqual) {
+      targetAnimal.getElementsByClassName("footer-box__button")[0].innerHTML = `
+          <div style="cursor: not-allowed;">
+            Kupione
+            <img src="./img/icons/in-cart-icon.svg" alt="in cart">
+          </div>
+        `;
+    }
   });
 };
 
@@ -209,6 +214,7 @@ const showCartList = () => {
       currentFilterType[0].classList.remove("category--selected");
       target.classList.add("category--selected");
       generateAnimalsCard(fetchedAnimals, target.dataset.idx);
+      cartChecker();
     }
   });
 };
