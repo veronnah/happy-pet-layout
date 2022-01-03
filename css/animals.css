@@ -47,10 +47,16 @@
   color: #fff;
 }
 
+.animals-section{
+  display: flex;
+  justify-content: center;
+}
+
 .animals-section__list {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 1130px;
 }
 
 .animal-card {

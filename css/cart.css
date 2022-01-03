@@ -1,3 +1,21 @@
+body {
+  background: rgba(247, 187, 117, 0.25);
+}
+
 .cart-main {
   margin: 200px 0;
+}
+
+.cart-main__heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.cart-section__list {
+  display: flex;
+  justify-content: center;
+}
+
+.cart-section__list .animal-card:not(:last-child) {
+  margin-right: 20px;
 }

@@ -1,110 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./css/cart.css">
-  <link rel="stylesheet" href="./css/reset.css">
-  <link rel="stylesheet" href="./css/main.css">
-  <title>Cart</title>
-  <link rel="shortcut icon" href="./img/favicon_io/favicon-32x32.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/cart.css">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/main.css">
+    <title>Cart</title>
+    <link rel="shortcut icon" href="./img/favicon_io/favicon-32x32.png" type="image/png">
 </head>
+
 <body>
-  <header class="header">
-    <div class="container">
-        <div class="header__inner">
-            <a href="index.html" class="logo">
-              <img src="./img/logo.svg" alt="logo">
-            </a>
-            <nav class="header__nav">
-                <ul id="headerNavList">
-                  <li><a href="index.html">Strona Główna</a></li>
-                  <li><a href="animals.html">Zwierzęta</a></li>
-                  <li><a href="about-us.html">O nas</a></li>
-                  <li><a href="contacts.html">Kontakty</a></li>
-                </ul>
-            </nav>
-            <a href="tel:+487332378" class="call"><img src="./img/icons/phone.svg">+48 733 23-78</a>
-            <div class="header__cart-dropdown">
-              <a href="cart.html"><img class="cart-icon" src="./img/icons/cart.svg"></a>
-              <a href="cart.html"><span id="cartCounter" class="price"></span></a>
-            </div>
-        </div>
-    </div>
-  </header>
-
-  <main class="cart-main">
-    <section class="container">
-      <ul class="cart-section__list" id="cartSectionList"></ul>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-        <h2 class="footer__title">Masz pytania? Zapytaj się!</h2>
-        <form action="#" class="footer-form">
-            <div class="footer-form__inputs-box">
-                <input
-                    type="text"
-                    class="footer-form__input space-xl"
-                    placeholder="Wpisz swoje imię"
-                >
-                <input
-                    type="email"
-                    class="footer-form__input"
-                    placeholder="Wprowadź e-mail"
-                >
-            </div>
-            <div class="footer-form__inputs-box">
-                <input
-                    type="text"
-                    class="footer-form__input space-xl"
-                    placeholder="Wpisz swój telefon"
-                >
-                <input
-                    type="text"
-                    class="footer-form__input"
-                    placeholder="Temat pytania"
-                >
-            </div>
-            <textarea
-                rows="8"
-                cols="45"
-                name="text"
-                class="footer-form__textarea"
-                placeholder="Wpisz swoją wiadomość"
-            ></textarea>
-            <div class="footer-form__checkboxes">
-                <div class="checkboxes-wrap">
-                    <div class="footer-form__checkbox-group">
-                        <input type="checkbox" id="wyrzzamZgode">
-                        <label for="wyrzzamZgode">
-                            Wyrażam zgodę na przetwarzanie danych osobowych
-                        </label>
-                    </div>
-                    <div class="footer-form__checkbox-group">
-                        <input type="checkbox" id="politykaPryw">
-                        <label for="politykaPryw">
-                            Zgadzam się z polityką prywatności
-                        </label>
-                    </div>
+    <header class="header">
+        <div class="container">
+            <div class="header__inner">
+                <a href="index.html" class="logo">
+                    <img src="./img/logo.svg" alt="logo">
+                </a>
+                <nav class="header__nav">
+                    <ul id="headerNavList">
+                        <li><a href="index.html">Strona Główna</a></li>
+                        <li><a href="animals.html">Zwierzęta</a></li>
+                        <li><a href="about-us.html">O nas</a></li>
+                        <li><a href="contacts.html">Kontakty</a></li>
+                    </ul>
+                </nav>
+                <a href="tel:+487332378" class="call"><img src="./img/icons/phone.svg">+48 733 23-78</a>
+                <div class="header__cart-dropdown">
+                    <a href="cart.html"><img class="cart-icon" src="./img/icons/cart.svg"></a>
+                    <a href="cart.html"><span id="cartCounter" class="price"></span></a>
                 </div>
-                <button class="footer-form__submit-btn">Wyślij</button>
             </div>
-        </form>
-        <div class="footer-detail">
-            <img src="./img/footer-logo.png" alt="logo">
-            <div>
-                <img src="./img/icons/phone-white.svg" alt="phone">
-                +48 733 23-78 
-            </div>
-            <p>2021 © Wszelkie prawa zastrzeżone</p>
         </div>
-    </div>
-    <img src="./img/footer-dog.png" alt="dog" class="footer__dog-image">
-  </footer>
-  <script src="./js/swiper-bundle.min.js"></script>
-  <script src="./js/main.js"></script>
+    </header>
+
+    <main class="cart-main">
+        <section class="container">
+            <h3 class="cart-main__heading">Koszyk</h3>
+            <ul class="cart-section__list" id="cartSectionList"></ul>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <h2 class="footer__title">Masz pytania? Zapytaj się!</h2>
+            <form action="#" class="footer-form">
+                <div class="footer-form__inputs-box">
+                    <input type="text" class="footer-form__input space-xl" placeholder="Wpisz swoje imię">
+                    <input type="email" class="footer-form__input" placeholder="Wprowadź e-mail">
+                </div>
+                <div class="footer-form__inputs-box">
+                    <input type="text" class="footer-form__input space-xl" placeholder="Wpisz swój telefon">
+                    <input type="text" class="footer-form__input" placeholder="Temat pytania">
+                </div>
+                <textarea rows="8" cols="45" name="text" class="footer-form__textarea"
+                    placeholder="Wpisz swoją wiadomość"></textarea>
+                <div class="footer-form__checkboxes">
+                    <div class="checkboxes-wrap">
+                        <div class="footer-form__checkbox-group">
+                            <input type="checkbox" id="wyrzzamZgode">
+                            <label for="wyrzzamZgode">
+                                Wyrażam zgodę na przetwarzanie danych osobowych
+                            </label>
+                        </div>
+                        <div class="footer-form__checkbox-group">
+                            <input type="checkbox" id="politykaPryw">
+                            <label for="politykaPryw">
+                                Zgadzam się z polityką prywatności
+                            </label>
+                        </div>
+                    </div>
+                    <button class="footer-form__submit-btn">Wyślij</button>
+                </div>
+            </form>
+            <div class="footer-detail">
+                <img src="./img/footer-logo.png" alt="logo">
+                <div>
+                    <img src="./img/icons/phone-white.svg" alt="phone">
+                    +48 733 23-78
+                </div>
+                <p>2021 © Wszelkie prawa zastrzeżone</p>
+            </div>
+        </div>
+        <img src="./img/footer-dog.png" alt="dog" class="footer__dog-image">
+    </footer>
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/main.js"></script>
 </body>
+
 </html>

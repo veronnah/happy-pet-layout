@@ -3,7 +3,6 @@ const parsedCartLS = cartLS ? JSON.parse(cartLS) : [];
 const cartAnimals = cartLS ? JSON.parse(cartLS) : [];
 const filterSectionList = document.getElementById("filterSectionList");
 let cartSectionList = document.getElementById("cartSectionList");
-// let animalsSectionList = document.getElementById("animalsSectionList");
 let animalsSectionList = document.querySelector(".animalsSectionList");
 let selectedFilterIdx = 0;
 let fetchedAnimals = null;
@@ -147,7 +146,7 @@ const onBuy = (e) => {
   const targetFetchedAnimal = fetchedAnimals[targetId];
 
   event.target.innerHTML = `
-      <div style="cursor: not-allowed;">
+      <div class="added__to-cart" style="cursor: not-allowed;">
         W koszyku
         <img src="./img/icons/in-cart-icon.svg" alt="in cart">
       </div>
@@ -169,7 +168,7 @@ const cartChecker = () => {
 
     if (isEqual) {
       targetAnimal.getElementsByClassName("footer-box__button")[0].innerHTML = `
-          <div style="cursor: not-allowed;">
+          <div class="added__to-cart" style="cursor: not-allowed;">
             W koszyku
             <img src="./img/icons/in-cart-icon.svg" alt="in cart">
           </div>
@@ -183,7 +182,7 @@ const cartPriceCounter = () => {
   const cartCounter = document.getElementById("cartCounter");
 
   if (!cartForPriceLS) {
-    cartCounter.textContent = "Cart";
+    cartCounter.textContent = "Koszyk";
     return;
   }
 
@@ -274,3 +273,5 @@ const catalogSlider = new Swiper(".catalog__slider", {
     dynamicBullets: true,
   },
 });
+
+lightGallery(document.getElementById('lightgallery')); 

@@ -16,14 +16,13 @@ body {
 .about-us-section__title {
     margin-bottom: 74px;
     font-weight: 800;
-    font-size: 26px;
     line-height: 109%;
     color: #000;
 }
 
 .about-us-section__subtitle {
     margin-bottom: 36px;
-    font-size: 21px;
+    font-size: 24px;
     line-height: 109.42%;
     font-weight: bold;
     color: #000;
@@ -35,8 +34,9 @@ body {
 
 .about-us-section__first-paragraph,
 .about-us-section__second-paragraph {
+    text-align: justify;
     font-weight: 500;
-    font-size: 17px;
+    font-size: 21px;
     line-height: 109%;
     color: #000;
 }
@@ -44,6 +44,7 @@ body {
 .about-us-section__main-content-container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 300px;
 }
 
 .about-us-section__image {
