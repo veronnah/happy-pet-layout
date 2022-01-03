@@ -8,7 +8,7 @@
     <title>Happy Pet</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/swiper-bundle.min.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" href="./img/favicon_io/favicon-32x32.png" type="image/png">
 </head>
 
@@ -31,7 +31,6 @@
                 <div class="header__cart-dropdown">
                   <a href="cart.html"><img class="cart-icon" src="./img/icons/cart.svg"></a>
                   <a href="cart.html"><span id="cartCounter" class="price"></span></a>
-                  <img class="arrow__cart-down" src="./img/icons/arrow_down-cart.svg">
                 </div>
             </div>
         </div>
@@ -130,6 +129,18 @@
         </div>
     </section>
 
+    <section class="catalog">
+        <div class="container">
+            <h3 class="catalog__heading">Katalog zwierząt</h3>
+            <div class="swiper catalog__slider">
+                <div class="swiper-wrapper catalog__slide-wrapper animalsSectionList">
+                </div>
+    
+                <div class="swiper-pagination"></div>
+            </div>
+        </div>
+    </section>
+
     <footer class="footer">
         <div class="container">
             <h2 class="footer__title">Masz pytania? Zapytaj się!</h2>
@@ -139,6 +150,7 @@
                         type="text"
                         class="footer-form__input space-xl"
                         placeholder="Wpisz swoje imię"
+                        required
                     >
                     <input
                         type="email"

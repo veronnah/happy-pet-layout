@@ -1,4 +1,5 @@
 @import url('../css/fonts.css');
+@import url('../css/animals.css');
 
 * {
     box-sizing: border-box;
@@ -14,6 +15,12 @@ body {
     font-style: normal;
     font-weight: normal;
     overflow-x: hidden;
+}
+
+h3 {
+    font-weight: 800;
+    font-size: 30px;
+    color: #000000;
 }
 
 a {
@@ -161,7 +168,6 @@ button {
 /* Why us section */
 
 .why__us {
-    padding-bottom: 300px;
     transform: translateY(-240px);
 }
 
@@ -292,12 +298,46 @@ button {
 
 .why__us h3 {
     max-width: 390px;
-    font-weight: 800;
-    font-size: 30px;
-    color: #000000;
     margin-top: 120px;
     margin-bottom: 68px;
 }
+
+/* Catalog */
+
+.catalog {
+    padding: 80px;
+    background-color: rgba(246, 187, 117, 0.25);
+}
+
+.catalog__heading {
+    text-align: center;
+    margin-bottom: 80px;
+}
+.catalog__slider{
+    max-width: 1130px;
+}
+.catalog__slide-wrapper{
+    margin-bottom: 50px;
+}
+
+.catalog__slide-wrapper .swiper-slide.animal-card{
+    max-width: unset;
+    min-height: 460px;
+}
+.swiper-pagination{
+    width: 100px !important;
+}
+.swiper-pagination-bullet{
+    background-color: #5f4747a6;
+    width: 10px;
+    height: 10px;
+}
+.swiper-pagination-bullet.swiper-pagination-bullet-active{
+    width: 12px;
+    height: 12px;
+}
+
+/* Footer */
 
 .footer {
     position: relative;
@@ -351,6 +391,7 @@ button {
 
 .footer-form__input::placeholder,
 .footer-form__textarea::placeholder {
+    font-family: 'Montserrat';
     font-weight: 500;
     font-size: 18px;
     line-height: 109.42%;
@@ -358,6 +399,7 @@ button {
 }
 
 .footer-form__textarea {
+    font-family: 'Montserrat';
     margin-bottom: 35px;
     width: 100%;
 }
@@ -368,13 +410,15 @@ button {
     font-size: 15px;
     line-height: 18px;
     color: #fff;
-    background: linear-gradient(180deg, #FA3A68 0%, #CC1637 100%);
-    box-shadow: 0px 0px 29px 3px rgba(255, 90, 128, 0.54);
+    background: linear-gradient(180deg, #ec4a70 0%, #CC1637 100%);
+ 
     border-radius: 40px;
+    transition: .3s;
 }
 
 .footer-form__submit-btn:hover {
-    background: linear-gradient(180deg, #b32345 0%, #c3566a 100%);
+    background-color: #f63764;
+    box-shadow: 0px 0px 29px 3px rgba(255, 90, 128, 0.54);
 }
 
 .footer-form__checkbox-group {
@@ -397,7 +441,7 @@ button {
 }
 
 .footer-form__checkbox-group label:before {
-    content:'';
+    content: '';
     -webkit-appearance: none;
     background-color: transparent;
     border: 1px solid #fff;
@@ -410,7 +454,7 @@ button {
     margin-right: 5px;
 }
 
-.footer-form__checkbox-group input:checked + label:after {
+.footer-form__checkbox-group input:checked+label:after {
     content: '';
     display: block;
     position: absolute;

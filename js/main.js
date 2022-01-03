@@ -3,7 +3,8 @@ const parsedCartLS = cartLS ? JSON.parse(cartLS) : [];
 const cartAnimals = cartLS ? JSON.parse(cartLS) : [];
 const filterSectionList = document.getElementById("filterSectionList");
 let cartSectionList = document.getElementById("cartSectionList");
-let animalsSectionList = document.getElementById("animalsSectionList");
+// let animalsSectionList = document.getElementById("animalsSectionList");
+let animalsSectionList = document.querySelector(".animalsSectionList");
 let selectedFilterIdx = 0;
 let fetchedAnimals = null;
 
@@ -41,10 +42,9 @@ const generateAnimalsCard = (animals, filterIdx) => {
 
   filteredAnimals.forEach((animal, idx) => {
     const animalVaccinated =
-      animal.vaccinated &&
-      `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`;
+      animal.vaccinated ?  `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
 
-    const content = `<div class="animal-card" data-id="${
+    const content = `<div class="swiper-slide animal-card" data-id="${
       animal.id + animal.name
     }">
         <div class="animal-card__header">
@@ -68,8 +68,8 @@ const generateAnimalsCard = (animals, filterIdx) => {
         <div class="animal-card__footer">
           <h4 class="footer-box__price">${animal.price}.</h4>
           <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
-            Kupic
-            <img src="./img/icons/buy-icon.svg" alt="buy">
+            Dodać do koszyka
+            <img src="./img/icons/to-cart-icon.svg" alt="buy">
           </button>
         </div>
       </div>
@@ -107,8 +107,7 @@ const generateCartCard = () => {
 
     parsedCartLS.forEach((animal, idx) => {
       const animalVaccinated =
-        animal.vaccinated &&
-        `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`;
+        animal.vaccinated && `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`;
 
       const content = `<div class="animal-card">
             <div class="animal-card__header">
@@ -149,7 +148,7 @@ const onBuy = (e) => {
 
   event.target.innerHTML = `
       <div style="cursor: not-allowed;">
-        Kupione
+        W koszyku
         <img src="./img/icons/in-cart-icon.svg" alt="in cart">
       </div>
     `;
@@ -171,7 +170,7 @@ const cartChecker = () => {
     if (isEqual) {
       targetAnimal.getElementsByClassName("footer-box__button")[0].innerHTML = `
           <div style="cursor: not-allowed;">
-            Kupione
+            W koszyku
             <img src="./img/icons/in-cart-icon.svg" alt="in cart">
           </div>
         `;
@@ -241,7 +240,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   showCartList();
 });
 
-const swiper = new Swiper(".mini__slider", {
+const miniSlider = new Swiper(".mini__slider", {
   loop: true,
 
   slidesPerView: 2,
@@ -254,7 +253,24 @@ const swiper = new Swiper(".mini__slider", {
 
   scrollbar: {
     el: ".swiper-scrollbar",
-    // hide: true,
     draggable: true,
+  },
+});
+
+const catalogSlider = new Swiper(".catalog__slider", {
+  loop: true,
+
+  slidesPerView: 3,
+  spaceBetween: 20,
+
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+    dynamicBullets: true,
   },
 });
