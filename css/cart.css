@@ -2,6 +2,10 @@ body {
   background: rgba(247, 187, 117, 0.25);
 }
 
+span.active {
+  font-weight: 600;
+}
+
 .cart-main {
   margin: 200px 0;
 }

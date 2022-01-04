@@ -38,6 +38,7 @@ button {
 }
 
 .container {
+    padding: 0 20px;
     max-width: 1290px;
     width: 100%;
     margin: 0 auto;
@@ -141,6 +142,9 @@ button {
 }
 
 .main__btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 300px;
     height: 70px;
     border-radius: 40px;
@@ -554,4 +558,46 @@ button {
     bottom: 0;
     right: 24px;
     filter: brightness(0.5)
+}
+
+::-webkit-scrollbar {
+    width: .6rem;
+    background-color: rgba(85, 56, 17, 0.589);
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(54, 33, 24, 0.589);
+    border-radius: 1rem;
+}
+
+@media screen and (max-width: 1760px) {
+    .main__animals-pics {
+        display: flex;
+        right: 0;
+        height: auto;
+    }
+
+    .main__animals-pics img {
+        max-width: 1110px;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    .main__animals-pics img {
+        max-width: 980px;
+    }
+
+    .mini__slider {
+        margin-left: 20px;
+    }
+
+    .main__text {
+        margin-left: 70px;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .main__animals-pics img {
+        max-width: 900px;
+    }
 }
