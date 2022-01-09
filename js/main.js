@@ -1,6 +1,6 @@
 const cartLS = localStorage.getItem("cart");
 const parsedCartLS = cartLS ? JSON.parse(cartLS) : [];
-const cartAnimals = cartLS ? JSON.parse(cartLS) : [];
+let cartAnimals = cartLS ? JSON.parse(cartLS) : [];
 const filterSectionList = document.getElementById("filterSectionList");
 let cartSectionList = document.getElementById("cartSectionList");
 let animalsSectionList = document.querySelector(".animalsSectionList");
@@ -40,8 +40,9 @@ const generateAnimalsCard = (animals, filterIdx) => {
   }
 
   filteredAnimals.forEach((animal, idx) => {
-    const animalVaccinated =
-      animal.vaccinated ?  `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">` : '';
+    const animalVaccinated = animal.vaccinated
+      ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
+      : "";
 
     const content = `<div class="swiper-slide animal-card" data-id="${
       animal.id + animal.name
@@ -66,7 +67,9 @@ const generateAnimalsCard = (animals, filterIdx) => {
         </div>
         <div class="animal-card__footer">
           <h4 class="footer-box__price">${animal.price}.</h4>
-          <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
+          <button id="${
+            animal.id
+          }" class="footer-box__button" onclick="onBuy(this)">
             Dodać do koszyka
             <img src="./img/icons/to-cart-icon.svg" alt="buy">
           </button>
@@ -100,41 +103,48 @@ const generateFilter = () => {
   });
 };
 
-const generateCartCard = () => {
+const generateCartCard = (newCart = parsedCartLS) => {
+  const cartSectionTitle = document.getElementById("cartSectionTitle");
+
+  if (!newCart.length && cartSectionTitle) {
+    cartSectionTitle.innerHTML = "Koszyk jest pusty!";
+  }
+
   if (cartSectionList) {
     cartSectionList.innerHTML = null;
 
-    parsedCartLS.forEach((animal, idx) => {
-      const animalVaccinated =
-        animal.vaccinated && `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`;
+    newCart.forEach((animal, idx) => {
+      const animalVaccinated = animal.vaccinated
+        ? `<img src="./img/icons/vaccinated-icon.svg" alt="vaccinated">`
+        : "";
 
       const content = `<div class="animal-card">
-            <div class="animal-card__header">
-              <div class="header-box">
-                <p class="header-box__age">${animal.age}</p>
-                miesiące
-              </div>
-              ${animalVaccinated}
+          <div class="animal-card__header">
+            <div class="header-box">
+              <p class="header-box__age">${animal.age}</p>
+              miesiące
             </div>
-            <div class="animal-card__main">
-              <img src="./img/animals/${animal.image}" alt="dog">
-              <h3 class="main-box__title">${animal.name}</h3>
-              <p class="main-box__description">
-                ${animal.description}
-              </p>
-              <div class="main-box__tags">
-                <p>${animal.tag}</p>
-                <p>${animal.subTag}</p>
-              </div>
-            </div>
-            <div class="animal-card__footer">
-              <h4 class="footer-box__price">${animal.price}.</h4>
-              <button id="${idx}" class="footer-box__button" onclick="onBuy(this)">
-                Usunąć
-              </button>
+            ${animalVaccinated}
+          </div>
+          <div class="animal-card__main">
+            <img src="./img/animals/${animal.image}" alt="dog">
+            <h3 class="main-box__title">${animal.name}</h3>
+            <p class="main-box__description">
+              ${animal.description}
+            </p>
+            <div class="main-box__tags">
+              <p>${animal.tag}</p>
+              <p>${animal.subTag}</p>
             </div>
           </div>
-        `;
+          <div class="animal-card__footer">
+            <h4 class="footer-box__price">${animal.price}.</h4>
+            <button id="${animal.id}" class="footer-box__button" onclick="onDelete(this)">
+              Usunąć
+            </button>
+          </div>
+        </div>
+      `;
 
       cartSectionList.innerHTML += content;
     });
@@ -157,6 +167,15 @@ const onBuy = (e) => {
     localStorage.setItem("cart", JSON.stringify(cartAnimals));
     cartPriceCounter();
   }
+};
+
+const onDelete = (e) => {
+  cartAnimals = cartAnimals.filter(
+    (animal) => animal.id !== Number(event.target.id)
+  );
+  localStorage.setItem("cart", JSON.stringify(cartAnimals));
+  generateCartCard(cartAnimals);
+  cartPriceCounter();
 };
 
 const cartChecker = () => {
@@ -274,4 +293,4 @@ const catalogSlider = new Swiper(".catalog__slider", {
   },
 });
 
-lightGallery(document.getElementById('lightgallery')); 
+lightGallery(document.getElementById("lightgallery"));
