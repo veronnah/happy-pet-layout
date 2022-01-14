@@ -47,7 +47,7 @@
   color: #fff;
 }
 
-.animals-section{
+.animals-section {
   display: flex;
   justify-content: center;
 }
@@ -194,6 +194,7 @@
 
 .footer-box__button img {
   margin-left: 8px;
+  margin-bottom: 7px;
 }
 
 body.animals__body {
