@@ -181,7 +181,14 @@ const cartChecker = () => {
   if (!animalsSectionList) return;
 
   parsedCartLS.forEach((animal) => {
-    const targetAnimal = animalsSectionList.children[animal.id];
+    let targetAnimal = null;
+
+    Object.values(animalsSectionList.children).forEach((item) => {
+      if (item?.dataset?.id === animal.id + animal.name) {
+        targetAnimal = item;
+      }
+    });
+
     const isEqual = animal.id + animal.name === targetAnimal?.dataset?.id;
 
     if (isEqual) {
