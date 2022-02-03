@@ -112,6 +112,9 @@
 
 .animal-card__main img {
   margin-bottom: 28px;
+  width: 209px;
+  height: 214px;
+  object-fit: cover;
 }
 
 .main-box__title {

@@ -90,8 +90,7 @@ const generateFilter = () => {
     "Koty",
     "Papugi",
     "Chomiki",
-    "Ryby",
-    "Gady",
+    "Króliki",
   ];
 
   categories.forEach((category, idx) => {
@@ -151,7 +150,7 @@ const generateCartCard = (newCart = parsedCartLS) => {
   }
 };
 
-const onBuy = (e) => {
+const onBuy = () => {
   const targetId = event.target.id;
   const targetFetchedAnimal = fetchedAnimals[targetId];
 
