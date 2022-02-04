@@ -300,3 +300,4 @@ const catalogSlider = new Swiper(".catalog__slider", {
 });
 
 lightGallery(document.getElementById("lightgallery"));
+AOS.init();

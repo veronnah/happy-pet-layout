@@ -8,13 +8,14 @@
     <title>Happy Pet</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="./css/lightgallery.min.css">
     <link rel="stylesheet" href="./css/main.css">
     <link rel="shortcut icon" href="./img/favicon_io/favicon-32x32.png" type="image/png">
 </head>
 
 <body>
-    <header class="header">
+    <header class="header" data-aos="fade-up">
         <div class="container">
             <div class="header__inner">
                 <a href="index.html" class="logo">
@@ -39,12 +40,12 @@
 
     <section class="main">
         <div class="container">
-            <div class="main__text">
+            <div class="main__text" data-aos="fade-left">
                 <h1>Twój nowy przyjaciel z dostawą do domu</h1>
                 <p>Internetowy sklep zoologiczny da Ci nowego przyjaciela za pomocą kilku kliknięć!</p>
                 <a href="animals.html" class="main__btn">Zobać więcej</a>
             </div>
-            <div class="main__animals-pics">
+            <div class="main__animals-pics" data-aos="fade-left">
                 <img src="./img/main_bg-animals.png" alt="">
             </div>
         </div>
@@ -101,21 +102,21 @@
             </div>
             <h3>Dlaczego warto wybrać naszych przyjaciół</h3>
             <div class="why__us-benefits">
-                <div class="why__us-benefit">
+                <div class="why__us-benefit" data-aos-duration="2000" data-aos="fade-down-right">
                     <img src="./img/benefit1.svg">
                     <div class="why__us-benefit_text">
                         <h5>Ich dużo</h5>
                         <p>Ogromny wybór zwierząt, ptaków i zwierząt domowych</p>
                     </div>
                 </div>
-                <div class="why__us-benefit">
+                <div class="why__us-benefit" data-aos-duration="2000" data-aos="fade-up">
                     <img src="./img/benefit2.svg">
                     <div class="why__us-benefit_text">
                         <h5>Oni są zdrowi</h5>
                         <p>Dbamy o każdego zwierzaka, który jest z nami</p>
                     </div>
                 </div>
-                <div class="why__us-benefit">
+                <div class="why__us-benefit" data-aos-duration="2000" data-aos="fade-down-left">
                     <img src="./img/benefit3.svg">
                     <div class="why__us-benefit_text">
                         <h5>Są kochani</h5>
@@ -126,7 +127,7 @@
         </div>
     </section>
 
-    <section class="catalog">
+    <section class="catalog" data-aos="fade-down" data-aos-duration="1800">
         <div class="container">
             <h3 class="catalog__heading">Katalog zwierząt</h3>
             <div class="swiper catalog__slider">
@@ -142,29 +143,29 @@
         <div class="container">
             <h3 class="gallery__heading">Kochamy się bawić</h3>
             <div class="gallery__grid" id="lightgallery">
-                <a href="img/gal1.jpg" class="gallery__img1">
+                <a href="img/gal1.jpg" class="gallery__img1" data-aos="flip-left" data-aos-duration="3000">
                     <img src="img/gallery1.png"/>
                 </a>
-                <a href="img/gal2.jpg" class="gallery__img2">
+                <a href="img/gal2.jpg" class="gallery__img2" data-aos="flip-left" data-aos-duration="3000">
                     <img src="img/gallery2.png"/>
                 </a>
-                <a href="img/gal3.jpg" class="gallery__img3">
+                <a href="img/gal3.jpg" class="gallery__img3" data-aos="flip-left" data-aos-duration="3000">
                     <img src="img/gallery3.png"/>
                 </a>
-                <a href="img/gal4.jpg" class="gallery__img4">
+                <a href="img/gal4.jpg" class="gallery__img4" data-aos="flip-left" data-aos-duration="3000">
                     <img src="img/gallery4.png"/>
                 </a>
-                <a href="img/gal5.jpg" class="gallery__img5">
+                <a href="img/gal5.jpg" class="gallery__img5" data-aos="flip-left" data-aos-duration="3000">
                     <img src="img/gallery5.png"/>
                 </a>
-                <a href="img/gal6.jpg" class="gallery__img6">
+                <a href="img/gal6.jpg" class="gallery__img6" data-aos="flip-left" data-aos-duration="3000">
                     <img src="img/gallery6.png"/>
                 </a>
               </div>
         </div>
     </section>
 
-    <footer class="footer">
+    <footer class="footer" data-aos="fade-up" data-aos-duration="3000">
         <div class="container">
             <h2 class="footer__title">Masz pytania? Zapytaj się!</h2>
             <form action="#" class="footer-form">
@@ -233,6 +234,7 @@
     <script src="./js/lightgallery.min.js"></script>
     <script src="./js/thumbnail.min.js"></script>
     <script src="./js/fullscreen.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="./js/main.js"></script>
 </body>
 </html>

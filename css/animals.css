@@ -17,6 +17,7 @@
 .filter-section__categories {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .category {
@@ -29,6 +30,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  margin: 8px;
 }
 
 .category:hover {
